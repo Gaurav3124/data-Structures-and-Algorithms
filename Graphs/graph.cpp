@@ -26,6 +26,34 @@ class Solution {
             }
             return bfs;
         }
+
+        vector<int> dfsGraphTraversal(int V, vector<int> adj[]){
+            vector<int> vis(V,0);
+            vector<int> dfsoutput;
+            vis[0] = 1;
+            queue<int> q;
+            q.push(0);
+
+            while(!q.empty()){
+                int node = q.front();
+                q.pop();
+                for(auto it : adj[node]){
+                    dfs(node, vis, dfsoutput, adj);
+                }
+            }
+            return dfsoutput;
+        }
+
+    private :
+        void dfs(int node, vector<int> &vis, vector<int> &dfsoutput, vector<int> adj[]){
+            vis[node] = 1;
+            dfsoutput.push_back(node);
+            for(auto it : adj[node]){
+                if(!vis[it]){
+                    dfs(it, vis, dfsoutput, adj);
+                }
+            }
+        }
 };
 
 void addEdge(vector <int> adj[], int u, int v) {
@@ -49,8 +77,11 @@ int main()
     addEdge(adj, 0, 4);
 
     Solution obj;
-    vector <int> ans = obj.bfsGraphTraversal(5, adj);
-    printAns(ans);
+    vector <int> ansBFS = obj.bfsGraphTraversal(5, adj);
+    printAns(ansBFS);
+
+    vector<int> ansDFS = obj.dfsGraphTraversal(5, adj);
+    printAns(ansDFS);
 
     return 0;
 }
