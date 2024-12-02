@@ -1,3 +1,0 @@
-int BoyerMooreMajority(int &arr[]) {
-
-}

@@ -12,7 +12,6 @@ int graph1[N][N];// adjecency matrix
 vector<pair<int, int>> graph2[N]; // adjecency list
 vector<int>vis[N]; //visited vertex
 
-
 // dfs basic
 void dfs(int vertex) {
 	vis[vertex] = true;
